@@ -34,8 +34,8 @@
 double g_FrameSize_WindowSize_Scale_x = 1.0;
 double g_FrameSize_WindowSize_Scale_y = 1.0;
 
-int width = 640;
-int height = 480;
+int width = 1000;
+int height = 600;
 int mx, my;
 
 #define sides 999 //分割数指定
