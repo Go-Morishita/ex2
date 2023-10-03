@@ -3,7 +3,7 @@
 //
 //  Created by Yonghao Yue on 2019/09/28.
 //  Updated 2021/10/06
-//  Copyright © 2019 Yonghao Yue. All rights reserved.
+//  Copyright © 2019 Yonghao Yue. All rights reserved.　
 //
 
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
@@ -17,7 +17,7 @@ Camera::Camera()
 , m_yVector( Eigen::Vector3d{ 0.0, 1.0, 0.0 } )
 , m_zVector( Eigen::Vector3d{ 0.0, 0.0, 1.0 } )
 , m_DistanceToObject( 1.0 )
-, m_FocalLength( 0.035 )
+, m_FocalLength( 0.035 * 0.4 )
 , m_ScreenWidth( 0.036 )
 , m_ScreenHeight( 0.024 )
 {
