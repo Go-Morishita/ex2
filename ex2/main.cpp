@@ -48,24 +48,121 @@ Camera g_Camera;
 
 //演習問題1
 void drawCG_1() {
+	//一番手前の面
 	glBegin(GL_TRIANGLES);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex3f(0.3, 0.0, 0.0);
-	glColor3f(0.0, 1.0, 0.0);
-	glVertex3f(0.6, 0.0, 0.0);
+	glColor3f(0.6, 0.0, 0.0);
+	glVertex3f(1.0, 0.0, 0.7);	//点B
+	glColor3f(0.8, 1.0, 0.0);
+	glVertex3f(1.5, 0.0, 0.7);	//点C
 	glColor3f(0.0, 0.0, 1.0);
-	glVertex3f(0.3, 0.4, 0.0);
+	glVertex3f(1.0, 0.5, 0.7);	//点A
 	glEnd();
 
 	glBegin(GL_TRIANGLES);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex3f(3.0, 0.0, 0.0);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.5, 0.7);	//点A
 	glColor3f(0.0, 1.0, 0.0);
-	glVertex3f(6.0, 0.0, 0.0);
+	glVertex3f(1.5, 0.5, 0.7);	//点D
 	glColor3f(0.0, 0.0, 1.0);
-	glVertex3f(3.0, 4.0, 0.0);
+	glVertex3f(1.5, 0, 0.7);	//点C
+	glEnd();
+
+	//右側面
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.5, 0.5, 0.7);	//点D
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.0, 0.7);	//点C
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.5, 0.5, 0.2);	//点H
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.5, 0.0, 0.2);	//点G
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.0, 0.7);	//点C
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.5, 0.5, 0.2);	//点H
+	glEnd();
+
+	//左側面
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.5, 0.7);	//点A
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.0, 0.0, 0.7);	//点B
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0, 0.2);	//点F
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.5, 0.7);	//点A
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.0, 0.5, 0.2);	//点E
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0, 0.2);	//点F
+	glEnd();
+
+	//上面
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.5, 0.7);	//点A
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.5, 0.7);	//点D
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0.5, 0.2);	//点E
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.5, 0.5, 0.2);	//点H
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.5, 0.7);	//点D
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0.5, 0.2);	//点E
+	glEnd();
+
+	//底面
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.0, 0.7);	//点B
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.0, 0.7);	//点C
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0, 0.2);	//点F
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.5, 0.0, 0.2);	//点G
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.0, 0.7);	//点C
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0, 0.2);	//点F
+	glEnd();
+
+	//奥の面
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.5, 0.2);	//点E
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.5, 0.2);	//点H
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.5, 0, 0.2);	//点G
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.6, 0.8, 0.0);
+	glVertex3f(1.0, 0.0, 0.2);	//点F
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(1.5, 0.0, 0.2);	//点G
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(1.0, 0.5, 0.2);	//点E
 	glEnd();
 }
+
 
 void drawCG_2() {
 	glBegin(GL_TRIANGLES);
