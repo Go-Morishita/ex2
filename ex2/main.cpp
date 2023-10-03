@@ -40,7 +40,23 @@ int mx, my;
 
 Camera g_Camera;
 
+/*カメラの中心にある最初の三角形の座標vertexの値は
+* glVertex3f(0.0, 0.8, 0.0);				
+* glVertex3f(-0.8, -0.8, 0.0);
+* glVertex3f(0.8, -0.8, 0.0);
+*/
+
+//演習問題1
 void drawCG_1() {
+	glBegin(GL_TRIANGLES);
+	glColor3f(1.0, 0.0, 0.0);
+	glVertex3f(0.3, 0.0, 0.0);
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(0.6, 0.0, 0.0);
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex3f(0.3, 0.4, 0.0);
+	glEnd();
+
 	glBegin(GL_TRIANGLES);
 	glColor3f(1.0, 0.0, 0.0);
 	glVertex3f(3.0, 0.0, 0.0);
@@ -66,7 +82,7 @@ void drawCG_3() {
 	glBegin(GL_TRIANGLES);
 	glColor3f(1.0, 0.0, 0.0);
 	glVertex3f(0.0, 0.8, 0.0);
-	glColor3f(0.0, 1.0, 0.0);
+	glColor3f(0.0, 1.0, 0.0);				
 	glVertex3f(-0.8, -0.8, 0.0);
 	glColor3f(0.0, 0.0, 1.0);
 	glVertex3f(0.8, -0.8, 0.0);
