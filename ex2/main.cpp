@@ -38,6 +38,12 @@ int width = 640;
 int height = 480;
 int mx, my;
 
+#define sides 999 //分割数指定
+#define radius 0.8 //大きさ指定(0<radius<1)
+#define M_PI 3.141592653589 //円周率
+
+const double angle = 2 * M_PI / sides;
+
 Camera g_Camera;
 
 /*カメラの中心にある最初の三角形の座標vertexの値は
@@ -68,14 +74,24 @@ void drawCG_1() {
 }
 
 void drawCG_2() {
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex3f(0.0, 0.8, 0.0);
-	glColor3f(0.0, 1.0, 0.0);
-	glVertex3f(-0.8, -0.8, 0.0);
-	glColor3f(0.0, 0.0, 1.0);
-	glVertex3f(0.8, -0.8, 0.0);
-	glEnd();
+	for (int i = 0; i < sides; i++) {
+
+		glColor3f(cos(i * angle), sin(i * angle), -cos(i * angle - (M_PI / 4)));//位相がちょうどよくずれるようにBlueの値を設定
+
+		glBegin(GL_TRIANGLES);
+		glVertex3f(0.0 - 2.0, 2.0, 0.0 - 2.0); //頂点座標
+
+		double x1 = radius * cos(i * angle);
+		double z1 = radius * sin(i * angle);
+		glVertex3f(x1 - 2.0, 0.0, z1 - 2.0); // - 2.0は座標ずらし
+
+		//x1,y1よりiを1ずらした座標をセットする
+		double x2 = radius * cos((i + 1) * angle);
+		double z2 = radius * sin((i + 1) * angle);
+		glVertex3f(x2 - 2.0, 0.0, z2 - 2.0); // - 2.0は座標ずらし
+
+		glEnd();
+	}
 }
 
 void drawCG_3() {
