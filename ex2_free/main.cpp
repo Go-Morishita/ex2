@@ -45,7 +45,7 @@ Camera g_Camera;
 #define M_PI 3.141592653589 //円周率
 
 void drawCG() {
-	double R = 1.8; // 0で球
+	double R = 1.5; // 0で球
 
 	int M = 100;
 	int S = 100;
@@ -59,7 +59,7 @@ void drawCG() {
 
 		for (int j = 0; j < S; j++) {
 
-			glColor3f(cos((i + j) * angleM), sin((i + j) * angleM), -cos((i + j) * angleM - (M_PI / 4)));
+			glColor3f(cos((i + j) * angleM * 3.2 * M_PI), sin((i + j) * angleM * 7.8 * M_PI), -sin((i + j) * angleM * M_PI - (M_PI / 4)));
 
 			glBegin(GL_TRIANGLES);
 
