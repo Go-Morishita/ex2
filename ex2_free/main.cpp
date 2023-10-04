@@ -34,21 +34,76 @@
 double g_FrameSize_WindowSize_Scale_x = 1.0;
 double g_FrameSize_WindowSize_Scale_y = 1.0;
 
-int width = 640;
-int height = 480;
+int width = 1000;
+int height = 600;
 int mx, my;
 
 Camera g_Camera;
 
+#define sides 999 //分割数指定
+
+#define M_PI 3.141592653589 //円周率
+
 void drawCG() {
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex3f(0.0, 0.8, 0.0);
-	glColor3f(0.0, 1.0, 0.0);
-	glVertex3f(-0.8, -0.8, 0.0);
-	glColor3f(0.0, 0.0, 1.0);
-	glVertex3f(0.8, -0.8, 0.0);
-	glEnd();
+	double R = 1.8; // 0で球
+
+	int M = 100;
+	int S = 100;
+	double radius4 = 0.4;
+
+	const double angleS = 2 * M_PI / S;
+
+	const double angleM = 2 * M_PI / M;
+
+	for (int i = 0; i < M; i++) {
+
+		for (int j = 0; j < S; j++) {
+
+			glColor3f(cos((i + j) * angleM), sin((i + j) * angleM), -cos((i + j) * angleM - (M_PI / 4)));
+
+			glBegin(GL_TRIANGLES);
+
+			double x1 = (R + radius4 * sin((i - 1) * angleS)) * cos(j * angleM);
+			double y1 = radius4 * cos((i - 1) * angleS);
+			double z1 = (R + radius4 * sin((i - 1) * angleS)) * sin(j * angleM);
+			glVertex3f(x1, z1, y1);
+
+			double x2 = (R + radius4 * sin(i * angleS)) * cos(j * angleM);
+			double y2 = radius4 * cos(i * angleS);
+			double z2 = (R + radius4 * sin(i * angleS)) * sin(j * angleM);
+			glVertex3f(x2, z2, y2);
+
+			double x3 = (R + radius4 * sin(i * angleS)) * cos((j + 1) * angleM);
+			double y3 = radius4 * cos(i * angleS);
+			double z3 = (R + radius4 * sin(i * angleS)) * sin((j + 1) * angleM);
+			glVertex3f(x3, z3, y3);
+
+			glEnd();
+
+			
+			glBegin(GL_TRIANGLES);
+
+			double x11 = (R + radius4 * sin(i * angleS)) * cos(j * angleM);
+			double y11 = radius4 * cos(i * angleS);
+			double z11 = (R + radius4 * sin(i * angleS)) * sin(j * angleM);
+			glVertex3f(x11, z11, y11);
+
+			double x22 = (R + radius4 * sin(i * angleS)) * cos((j + 1) * angleM);
+			double y22 = radius4 * cos(i * angleS);
+			double z22 = (R + radius4 * sin(i * angleS)) * sin((j + 1) * angleM);
+			glVertex3f(x22, z22, y22);
+
+			double x33 = (R + radius4 * sin((i + 1) * angleS)) * cos((j + 1) * angleM);
+			double y33 = radius4 * cos((i + 1) * angleS);
+			double z33 = (R + radius4 * sin((i + 1) * angleS)) * sin((j + 1) * angleM);
+			glVertex3f(x33, z33, y33);
+
+			glEnd();
+			
+
+		}
+
+	}
 }
 
 void idle()

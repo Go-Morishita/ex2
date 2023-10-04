@@ -42,8 +42,6 @@ int mx, my;
 #define radius 0.8 //大きさ指定(0<radius<1)
 #define M_PI 3.141592653589 //円周率
 
-const double angle = 2 * M_PI / sides;
-
 Camera g_Camera;
 
 /*カメラの中心にある最初の三角形の座標vertexの値は
@@ -171,6 +169,9 @@ void drawCG_1() {
 
 
 void drawCG_2() {
+
+	const double angle = 2 * M_PI / sides;
+
 	for (int i = 0; i < sides; i++) {
 
 		glColor3f(cos(i * angle), sin(i * angle), -cos(i * angle - (M_PI / 4)));//位相がちょうどよくずれるようにBlueの値を設定
@@ -203,14 +204,41 @@ void drawCG_3() {
 }
 
 void drawCG_4() {
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex3f(0.0, 0.8, 0.0);
-	glColor3f(0.0, 1.0, 0.0);
-	glVertex3f(-0.8, -0.8, 0.0);
-	glColor3f(0.0, 0.0, 1.0);
-	glVertex3f(0.8, -0.8, 0.0);
-	glEnd();
+	int M = 10;
+	int S = 20;
+	double radius4 = 1.5;
+
+	const double angleS = 2 * M_PI / S;
+
+	const double angleM = 2 * M_PI / M;
+
+	for (int i = 0; i < M; i++) {
+
+		glColor3f(cos(i * angleS), sin(i * angleS), -cos(i * angleS - (M_PI / 4)));//位相がちょうどよくずれるようにBlueの値を設定
+
+		for (int j = 0; j < S; j++) {
+
+			glBegin(GL_TRIANGLES);
+
+			double x1 = radius4 * sin(i * angleS) * cos((j-1) * angleM);
+			double y1 = radius4 * sin(i * angleS);
+			double z1 = radius4 * sin(i * angleS) * sin((j-1) * angleM);
+			glVertex3f(x1, y1, z1);
+
+			double x2 = radius4 * sin(i * angleS) * cos(j * angleM);
+			double y2 = radius4 * sin(i * angleS);
+			double z2 = radius4 * sin(i * angleS) * sin(j * angleM);
+			glVertex3f(x2, y2, z2); 
+
+			double x3 = radius4 * sin((i + 1) * angleS) * cos(j * angleM);
+			double y3 = radius4 * sin((i + 1) * angleS);
+			double z3 = radius4 * sin((i+1) * angleS) * sin(j * angleM);
+			glVertex3f(x3, y3, z3);
+
+			glEnd();
+		}
+
+	}
 }
 
 void idle()
