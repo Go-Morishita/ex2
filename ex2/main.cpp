@@ -192,53 +192,81 @@ void drawCG_2() {
 	}
 }
 
+//演習問題3 堀田大智
+#define MAX 4705
+#define n 48
 void drawCG_3() {
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex3f(0.0, 0.8, 0.0);
-	glColor3f(0.0, 1.0, 0.0);				
-	glVertex3f(-0.8, -0.8, 0.0);
-	glColor3f(0.0, 0.0, 1.0);
-	glVertex3f(0.8, -0.8, 0.0);
-	glEnd();
+	int i, j, k, l;
+	double r = 1.0;
+	int c = 0;
+	double ido[MAX], keido[MAX];
+	double v[MAX][3], v1[MAX][3], v2[MAX][3], v3[MAX][3];
+
+	//それぞれの角度を定める(θ:緯度(ido)、Φ:経度(keido))
+	for (i = 0; i < n + 1; i++) {
+		for (j = 0; j < n * 2; j++) {
+			ido[c] = i * 3.1415 / n;
+			keido[c] = j * 3.1415 / n;
+
+			if (ido[c] >= 3.1415) {
+				ido[c] = 3.14159265;
+			}
+
+			if (keido[c] >= 6.283) {
+				keido[c] = 0.0;
+
+			}
+			c++;
+		}
+	}
+
+	for (k = 0; k < c + 1; k++) {
+		//現在の点
+		v[k][1] = r * sin(ido[k]) * cos(keido[k]);
+		v[k][2] = r * sin(ido[k]) * sin(keido[k]);
+		v[k][3] = r * cos(ido[k]);
+
+		//次の経度(keido + 1)の点
+		v1[k][1] = r * sin(ido[k]) * cos(keido[k] + 3.1415 / n);
+		v1[k][2] = r * sin(ido[k]) * sin(keido[k] + 3.1415 / n);
+		v1[k][3] = r * cos(ido[k]);
+
+		//次の緯度(ido + 1)の点
+		v2[k][1] = r * sin(ido[k] + 3.1415 / n) * cos(keido[k]);
+		v2[k][2] = r * sin(ido[k] + 3.1415 / n) * sin(keido[k]);
+		v2[k][3] = r * cos(ido[k] + 3.1415 / n);
+
+		//次の緯度(ido + 1)、経度(keido + 1)の点
+		v3[k][1] = r * sin(ido[k] + 3.1415 / n) * cos(keido[k] + 3.1415 / n);
+		v3[k][2] = r * sin(ido[k] + 3.1415 / n) * sin(keido[k] + 3.1415 / n);
+		v3[k][3] = r * cos(ido[k] + 3.1415 / n);
+	}
+
+	for (l = 0; l < c + 1; l++) {
+		//v, v2, v3からなる三角形
+		glBegin(GL_TRIANGLES);
+		glColor3f(1.0, 0.0, 0.0);
+		glVertex3f(v[l][1], v[l][3], v[l][2]);
+		glColor3f(0.0, 1.0, 0.0);
+		glVertex3f(v2[l][1], v2[l][3], v2[l][2]);
+		glColor3f(0.0, 0.0, 1.0);
+		glVertex3f(v3[l][1], v3[l][3], v3[l][2]);
+		glEnd();
+
+		//v, v1, v3からなる三角形
+		glBegin(GL_TRIANGLES);
+		glColor3f(1.0, 0.0, 0.0);
+		glVertex3f(v[l][1], v[l][3], v[l][2]);
+		glColor3f(0.0, 1.0, 0.0);
+		glVertex3f(v1[l][1], v1[l][3], v1[l][2]);
+		glColor3f(0.0, 0.0, 1.0);
+		glVertex3f(v3[l][1], v3[l][3], v3[l][2]);
+		glEnd();
+	}
 }
 
 void drawCG_4() {
-	int M = 10;
-	int S = 20;
-	double radius4 = 1.5;
 
-	const double angleS = 2 * M_PI / S;
-
-	const double angleM = 2 * M_PI / M;
-
-	for (int i = 0; i < M; i++) {
-
-		glColor3f(cos(i * angleS), sin(i * angleS), -cos(i * angleS - (M_PI / 4)));//位相がちょうどよくずれるようにBlueの値を設定
-
-		for (int j = 0; j < S; j++) {
-
-			glBegin(GL_TRIANGLES);
-
-			double x1 = radius4 * sin(i * angleS) * cos((j-1) * angleM);
-			double y1 = radius4 * sin(i * angleS);
-			double z1 = radius4 * sin(i * angleS) * sin((j-1) * angleM);
-			glVertex3f(x1, y1, z1);
-
-			double x2 = radius4 * sin(i * angleS) * cos(j * angleM);
-			double y2 = radius4 * sin(i * angleS);
-			double z2 = radius4 * sin(i * angleS) * sin(j * angleM);
-			glVertex3f(x2, y2, z2); 
-
-			double x3 = radius4 * sin((i + 1) * angleS) * cos(j * angleM);
-			double y3 = radius4 * sin((i + 1) * angleS);
-			double z3 = radius4 * sin((i+1) * angleS) * sin(j * angleM);
-			glVertex3f(x3, y3, z3);
-
-			glEnd();
-		}
-
-	}
 }
 
 void idle()
