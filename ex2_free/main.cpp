@@ -9,7 +9,7 @@
 /*
 * 青山学院大学 理工学部情報テクノロジー学科
 * デジタルメディア設計演習第2回課題
-* 共同制作 森下剛・堀田大智・中江智弘
+* 共同制作 森下剛・堀田大智・中江朋弘
 * 解答は関数drewCG内で作成
 */
 
@@ -44,7 +44,8 @@ Camera g_Camera;
 
 #define M_PI 3.141592653589 //円周率
 
-void drawCG() {
+// トーラスの作成
+void drawCG_1() {
 	double R = 1.5; // 0で球
 
 	int M = 100;
@@ -100,6 +101,69 @@ void drawCG() {
 
 			glEnd();
 			
+
+		}
+
+	}
+}
+
+// トーラスの結び目の作成
+void drawCG_2() {
+	double R = 7;
+
+	int M = 100;
+	int S = 100;
+	double radius4 = 0.4;
+
+	const double angleS = 2 * M_PI / S;
+
+	const double angleM = 2 * M_PI / M;
+
+	for (int i = 0; i < M; i++) {
+
+		for (int j = 0; j < S; j++) {
+
+			glColor3f(-sin(angleS * i), sin(angleS * i), cos(angleS * i));
+
+			glBegin(GL_TRIANGLES);
+
+			double x1 = (R - cos((i - 1) * angleS) + sin(5 * j * angleM)) * cos(2 * j * angleM);
+			double y1 = cos(5 * j * angleM) + sin((i - 1) * angleS);
+			double z1 = (R - cos((i - 1) * angleS) + sin(5 * j * angleM)) * sin(2 * j * angleM);
+			glVertex3f(x1, y1, z1);
+
+			double x2 = (R - cos(i * angleS) + sin(5 * j * angleM)) * cos(2 * j * angleM);
+			double y2 = cos(5 * j * angleM) + sin(i * angleS);
+			double z2 = (R - cos(i * angleS) + sin(5 * j * angleM)) * sin(2 * j * angleM);
+			glVertex3f(x2, y2, z2);
+
+			double x3 = (R - cos(i * angleS) + sin(5 * (j + 1) * angleM)) * cos(2 * (j + 1) * angleM);
+			double y3 = cos(5 * (j + 1) * angleM) + sin(i * angleS);
+			double z3 = (R - cos(i * angleS) + sin(5 * (j + 1) * angleM)) * sin(2 * (j + 1) * angleM);
+			glVertex3f(x3, y3, z3);
+
+			glEnd();
+
+
+			glBegin(GL_TRIANGLES);
+
+			double x11 = (R - cos(i * angleS) + sin(5 * j * angleM)) * cos(2 * j * angleM);
+			double y11 = cos(5 * j * angleM) + sin(i * angleS);
+			double z11 = (R - cos(i * angleS) + sin(5 * j * angleM)) * sin(2 * j * angleM);
+			glVertex3f(x11, y11, z11);
+
+			double x22 = (R - cos(i * angleS) + sin(5 * (j + 1) * angleM)) * cos(2 * (j + 1) * angleM);
+			double y22 = cos(5 * (j + 1) * angleM) + sin(i * angleS);
+			double z22 = (R - cos(i * angleS) + sin(5 * (j + 1) * angleM)) * sin(2 * (j + 1) * angleM);
+			glVertex3f(x22, y22, z22);
+
+			double x33 = (R - cos((i + 1) * angleS) + sin(5 * (j + 1) * angleM)) * cos(2 * (j + 1) * angleM);
+			double y33 = cos(5 * (j + 1) * angleM) + sin((i + 1) * angleS);
+			double z33 = (R - cos((i + 1) * angleS) + sin(5 * (j + 1) * angleM)) * sin(2 * (j + 1) * angleM);
+			glVertex3f(x33, y33, z33);
+
+			glEnd();
+
 
 		}
 
@@ -174,7 +238,9 @@ void display()
 
   drawFloor();
 
-  drawCG();
+  drawCG_1();
+
+  drawCG_2();
   
   glutSwapBuffers();
 }

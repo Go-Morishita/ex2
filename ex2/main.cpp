@@ -9,7 +9,7 @@
 /*
 * 青山学院大学 理工学部情報テクノロジー学科
 * デジタルメディア設計演習第2回課題
-* 共同制作 森下剛・堀田大智・中江智弘
+* 共同制作 森下剛・堀田大智・中江朋弘
 * 解答は関数drewCG_1～4内で作成
 */
 
@@ -192,10 +192,11 @@ void drawCG_2() {
 	}
 }
 
-//演習問題3 堀田大智
+//演習問題3 4
 #define MAX 4705
 #define n 48
-void drawCG_3() {
+
+void drawCG_3_4() {
 	int i, j, k, l;
 	double r = 1.0;
 	int c = 0;
@@ -245,28 +246,20 @@ void drawCG_3() {
 	for (l = 0; l < c + 1; l++) {
 		//v, v2, v3からなる三角形
 		glBegin(GL_TRIANGLES);
-		glColor3f(1.0, 0.0, 0.0);
+		glColor3f(0.4, 0.9, 0.4);
 		glVertex3f(v[l][1], v[l][3], v[l][2]);
-		glColor3f(0.0, 1.0, 0.0);
 		glVertex3f(v2[l][1], v2[l][3], v2[l][2]);
-		glColor3f(0.0, 0.0, 1.0);
 		glVertex3f(v3[l][1], v3[l][3], v3[l][2]);
 		glEnd();
 
 		//v, v1, v3からなる三角形
 		glBegin(GL_TRIANGLES);
-		glColor3f(1.0, 0.0, 0.0);
+		glColor3f(0.4, 0.9, 0.4);
 		glVertex3f(v[l][1], v[l][3], v[l][2]);
-		glColor3f(0.0, 1.0, 0.0);
 		glVertex3f(v1[l][1], v1[l][3], v1[l][2]);
-		glColor3f(0.0, 0.0, 1.0);
 		glVertex3f(v3[l][1], v3[l][3], v3[l][2]);
 		glEnd();
 	}
-}
-
-void drawCG_4() {
-
 }
 
 void idle()
@@ -341,9 +334,7 @@ void display()
 
   drawCG_2();
 
-  drawCG_3();
-
-  drawCG_4();
+  drawCG_3_4();
   
   glutSwapBuffers();
 }
