@@ -10,7 +10,7 @@
 * 青山学院大学 理工学部情報テクノロジー学科
 * デジタルメディア設計演習第2回課題
 * 共同制作 森下剛・堀田大智・中江朋弘
-* 解答は関数drewCG内で作成
+* 解答は関数drawCG_1,drawCG_2内で作成
 */
 
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
